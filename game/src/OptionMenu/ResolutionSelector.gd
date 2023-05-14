@@ -5,7 +5,7 @@ class_name ResolutionSelector
 # * UIFUN-28
 
 #Signal for when the player actually changes a setting
-signal selection_changed
+signal selection_changed(old_resolution, new_resolution)
 var previous_selected_index: int = -1
 
 @export
@@ -28,12 +28,10 @@ func _sync_resolutions(to_select : Vector2i = Resolution.get_current_resolution(
 
 		if resolution_value == default_value:
 			default_selected = item_count - 1
-			print("default_value")
 			previous_selected_index = item_count - 1
 
 		if resolution_value == to_select:
 			selected = item_count - 1
-			print("to_select")
 
 	if default_selected == -1:
 		default_selected = item_count - 1
@@ -71,15 +69,18 @@ func _set_value_from_file(load_value):
 	selected = default_selected
 
 func _on_item_selected(index : int):
-	if was_pressed and index != previous_selected_index:
-		emit_signal("selection_changed")
 	if _valid_index(index):
+		var old_resolution = Resolution.get_current_resolution()
 		Resolution.set_resolution(get_item_metadata(index))
+		var new_resolution = get_item_metadata(index)
+		#emit a signal if this option was changed by the user
+		if was_pressed and index != previous_selected_index:
+			emit_signal("selection_changed",old_resolution,new_resolution)
 	else:
 		push_error("Invalid ResolutionSelector index: %d" % index)
 		reset_setting()
-
+		
+#track if the user is actually interacting with this option
 var was_pressed = false
-
 func _on_toggled(button_pressed):
 	was_pressed = !button_pressed

@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://src/OptionMenu/MonitorDisplaySelector.gd" id="3_y6lyb"]
 [ext_resource type="Script" path="res://src/OptionMenu/RefreshRateSelector.gd" id="4_381mg"]
 [ext_resource type="Script" path="res://src/OptionMenu/QualityPresetSelector.gd" id="5_srg4v"]
-[ext_resource type="PackedScene" uid="uid://crndpegksnjot" path="res://src/OptionMenu/KeepChangesDialog.tscn" id="8_51u3f"]
+[ext_resource type="PackedScene" uid="uid://clbdmx1a35iny" path="res://src/OptionMenu/KeepChangesDialog.tscn" id="8_51u3f"]
 
 [node name="Video" type="HBoxContainer" node_paths=PackedStringArray("initial_focus")]
 editor_description = "UI-46"
@@ -156,12 +156,12 @@ default_selected = 1
 [node name="KeepChangesDialog" parent="." instance=ExtResource("8_51u3f")]
 disable_3d = true
 initial_position = 0
+title = "KEEP_CHANGES"
 position = Vector2i(500, 0)
 visible = false
 
 [connection signal="item_selected" from="VBoxContainer/GridContainer/ResolutionSelector" to="." method="_on_resolution_selector_item_selected"]
 [connection signal="item_selected" from="VBoxContainer/GridContainer/ResolutionSelector" to="VBoxContainer/GridContainer/ResolutionSelector" method="_on_item_selected"]
-[connection signal="pressed" from="VBoxContainer/GridContainer/ResolutionSelector" to="VBoxContainer/GridContainer/ResolutionSelector" method="_on_pressed"]
 [connection signal="selection_changed" from="VBoxContainer/GridContainer/ResolutionSelector" to="." method="_on_resolution_selector_selection_changed"]
 [connection signal="toggled" from="VBoxContainer/GridContainer/ResolutionSelector" to="VBoxContainer/GridContainer/ResolutionSelector" method="_on_toggled"]
 [connection signal="item_selected" from="VBoxContainer/GridContainer/GuiScaleSelector" to="VBoxContainer/GridContainer/GuiScaleSelector" method="_on_item_selected"]

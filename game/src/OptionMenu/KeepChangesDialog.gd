@@ -36,7 +36,7 @@ func _process(delta):
 	var time_left = -1
 	if not timer.is_stopped():
 		time_left = timer.time_left
-	dialog_text = "Reverting change in (%d)" % time_left
+	dialog_text = tr("REVERTING_IN") % time_left
 
 	
 func _on_confirmed() -> void:
