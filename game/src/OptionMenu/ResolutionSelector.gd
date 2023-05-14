@@ -1,11 +1,16 @@
 extends SettingOptionButton
-
+class_name ResolutionSelector
 # REQUIREMENTS
 # * UIFUN-21
 # * UIFUN-28
 
+#Signal for when the player actually changes a setting
+signal selection_changed
+var previous_selected_index: int = -1
+
 @export
 var default_value : Vector2i = Resolution.error_resolution
+
 
 func _find_resolution_index_by_value(value : Vector2i) -> int:
 	for item_index in item_count:
@@ -23,15 +28,19 @@ func _sync_resolutions(to_select : Vector2i = Resolution.get_current_resolution(
 
 		if resolution_value == default_value:
 			default_selected = item_count - 1
+			print("default_value")
+			previous_selected_index = item_count - 1
 
 		if resolution_value == to_select:
 			selected = item_count - 1
+			print("to_select")
 
 	if default_selected == -1:
 		default_selected = item_count - 1
 
 	if selected == -1:
 		selected = default_selected
+		
 
 func _setup_button():
 	if default_value.x <= 0:
@@ -62,8 +71,15 @@ func _set_value_from_file(load_value):
 	selected = default_selected
 
 func _on_item_selected(index : int):
+	if was_pressed and index != previous_selected_index:
+		emit_signal("selection_changed")
 	if _valid_index(index):
 		Resolution.set_resolution(get_item_metadata(index))
 	else:
 		push_error("Invalid ResolutionSelector index: %d" % index)
 		reset_setting()
+
+var was_pressed = false
+
+func _on_toggled(button_pressed):
+	was_pressed = !button_pressed

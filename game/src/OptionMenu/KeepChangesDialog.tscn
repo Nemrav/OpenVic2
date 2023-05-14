@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://clbdmx1a35iny"]
+
+[ext_resource type="Script" path="res://src/OptionMenu/KeepChangesDialog.gd" id="1_tluyr"]
+
+[node name="KeepChangesDialog" type="ConfirmationDialog"]
+initial_position = 2
+title = "KEEP_CHANGES?"
+visible = true
+ok_button_text = "YES"
+dialog_text = "REVERTING_IN (X)"
+cancel_button_text = "NO"
+script = ExtResource("1_tluyr")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="canceled" from="." to="." method="_on_canceled"]
+[connection signal="confirmed" from="." to="." method="_on_confirmed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
