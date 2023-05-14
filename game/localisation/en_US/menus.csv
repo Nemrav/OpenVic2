@@ -38,6 +38,8 @@ OPTIONS_VIDEO_QUALITY,Quality Preset
 OPTIONS_VIDEO_GUI_SCALE,Gui Scaling Factor
 KEEP_CHANGES,Keep this change?
 REVERTING_IN, Reverting changes in (%d)
+YES,Yes
+NO,No
 
 ,, Sound Tab
 MASTER_BUS,Master Volume
