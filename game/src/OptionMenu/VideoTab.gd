@@ -13,13 +13,7 @@ func _notification(what : int) -> void:
 			if visible and is_inside_tree():
 				initial_focus.grab_focus()
 
-
-#TODO: Fix the menu pop-up on higher gui scaling to always
-#be on top
-
-#TODO: why is the game starting at max resolution
-#then switching
-
+#These two functions help fulfill UIFUN-301 and UIFUN-302
 func _on_resolution_selector_selection_changed(old_resolution,new_resolution):
 	if revert_dialog:
 		print("Start Revert Countdown!")

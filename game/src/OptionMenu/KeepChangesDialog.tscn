@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://src/OptionMenu/KeepChangesDialog.gd" id="1_tluyr"]
 
 [node name="KeepChangesDialog" type="ConfirmationDialog"]
+editor_description = "UI-873, UIFUN-301, UIFUN-302"
 initial_position = 2
 title = "KEEP_CHANGES?"
 visible = true
