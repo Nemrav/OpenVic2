@@ -250,7 +250,11 @@ Error GUIListBox::set_gui_listbox(GUI::ListBox const* new_gui_listbox) {
 
 	gui_listbox = new_gui_listbox;
 
-	const String scrollbar_name = Utilities::std_to_godot_string(gui_listbox->get_scrollbar_name());
+	//const 
+	String scrollbar_name = Utilities::std_to_godot_string(gui_listbox->get_scrollbar_name());
+	if (scrollbar_name.is_empty()) {
+		scrollbar_name = "standardlistbox_slider";
+	}
 
 	Error err = OK;
 
